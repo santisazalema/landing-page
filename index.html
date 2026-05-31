@@ -1,107 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bask Health - Landing</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bask Health | Modern Healthcare Solutions</title>
   <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #06b6d4;
+      --dark: #0f172a;
+      --text: #334155;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9fafc;
-      color: #333;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
     }
-    header {
-      background: linear-gradient(135deg, #3b82f6, #06b6d4);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
+
+    img {
+      max-width: 100%;
+      display: block;
     }
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-    nav {
-      background: #1e293b;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
+
+    a {
       text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: #eff6ff;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.22);
+    }
+
+    .site-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--white);
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .hero {
+      padding: 72px 0 88px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      max-width: 620px;
+      margin-bottom: 28px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .hero-highlights {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .hero-highlights span {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 10px 14px;
+      border-radius: 999px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .hero-card ul {
+      padding-left: 18px;
+      margin-bottom: 0;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 14px;
+      font-size: 2rem;
+      color: var(--dark);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 42px;
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 26px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--dark);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: #dbeafe;
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 18px;
       font-weight: bold;
     }
-    section {
-      padding: 50px 20px;
-      text-align: center;
-    }
-    .services {
+
+    .split {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
     }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    .benefits-list {
+      display: grid;
+      gap: 16px;
     }
-    footer {
-      background: #1e293b;
-      color: white;
+
+    .benefit-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 22px;
       text-align: center;
-      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .stat h3 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: white;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .testimonial {
+      border-left: 4px solid var(--secondary);
+    }
+
+    .faq {
+      display: grid;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    details {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--dark);
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--dark), #1e293b);
+      color: var(--white);
+      border-radius: 28px;
+      padding: 42px 28px;
+      text-align: center;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 12px auto 24px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      text-align: center;
+      padding: 28px 20px;
       margin-top: 40px;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .split,
+      .grid-3,
+      .steps,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Welcome to Bask Health</h1>
-    <p>Innovating healthcare with technology and compassion</p>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <div class="logo">Bask Health</div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#process">Process</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div>
+          <h1>Healthcare technology built for better patient outcomes</h1>
+          <p>
+            Bask Health combines telemedicine, patient engagement, and data-driven care
+            to help providers deliver more accessible, efficient, and human-centered healthcare.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Book a Demo</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+          <div class="hero-highlights">
+            <span>Secure digital care</span>
+            <span>Responsive patient experience</span>
+            <span>Data-informed decisions</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Why providers choose Bask Health</h3>
+          <ul>
+            <li>Faster patient communication and follow-up</li>
+            <li>Integrated digital workflows for care teams</li>
+            <li>Scalable support for telemedicine and analytics</li>
+            <li>User-friendly experience for patients and staff</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
   <section id="about">
-    <h2>About Us</h2>
-    <p>At Bask Health, we leverage cutting-edge software solutions to improve healthcare accessibility, efficiency, and quality of care.</p>
+    <div class="container split">
+      <div>
+        <h2 class="section-title" style="text-align:left; margin-bottom:16px;">About Bask Health</h2>
+        <p>
+          We help healthcare organizations modernize care delivery through secure, accessible,
+          and patient-focused digital solutions.
+        </p>
+        <p>
+          Our platform is designed to support clinical teams with better workflows, clearer
+          communication, and tools that improve the healthcare experience from first contact to follow-up.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Trusted digital healthcare support</h3>
+        <p>
+          We focus on practical solutions for patient communication, telemedicine,
+          data visibility, and operational efficiency.
+        </p>
+      </div>
+    </div>
   </section>
 
   <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="card">
-        <h3>Telemedicine</h3>
-        <p>Connect with doctors anytime, anywhere, through our secure platform.</p>
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">
+        We create solutions that help healthcare teams deliver care more efficiently while improving the patient journey.
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon">+</div>
+          <h3>Telemedicine</h3>
+          <p>Enable secure virtual consultations and remote communication between patients and providers.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">AI</div>
+          <h3>Health Data Analytics</h3>
+          <p>Use data insights to identify trends, improve workflows, and support better clinical decisions.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">❤</div>
+          <h3>Patient Care Experience</h3>
+          <p>Improve engagement with personalized communication, care reminders, and digital support tools.</p>
+        </article>
       </div>
-      <div class="card">
-        <h3>Data Analytics</h3>
-        <p>We use AI-driven insights to support better decision-making in healthcare.</p>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="container">
+      <h2 class="section-title">Benefits</h2>
+      <p class="section-subtitle">
+        Our healthcare solutions are designed to make care more accessible, measurable, and efficient [web:117][web:123].
+      </p>
+
+      <div class="benefits-list">
+        <div class="benefit-item"><strong>Improved access:</strong> Patients can connect with care teams more easily across devices [web:123].</div>
+        <div class="benefit-item"><strong>Operational efficiency:</strong> Digital workflows reduce friction and save staff time [web:117].</div>
+        <div class="benefit-item"><strong>Better patient engagement:</strong> Clear communication and reminders help patients stay involved in their care [web:117].</div>
+        <div class="benefit-item"><strong>Scannable experience:</strong> Clear sections, concise copy, and visible actions improve usability [web:120][web:123].</div>
       </div>
-      <div class="card">
-        <h3>Patient Care</h3>
-        <p>Enhancing patient experience with personalized healthcare solutions.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <h3>24/7</h3>
+          <p>Digital access</p>
+        </div>
+        <div class="stat">
+          <h3>99%</h3>
+          <p>Platform reliability</p>
+        </div>
+        <div class="stat">
+          <h3>10k+</h3>
+          <p>Patient interactions</p>
+        </div>
+        <div class="stat">
+          <h3>5★</h3>
+          <p>User satisfaction focus</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">
+        A clear process helps users understand what happens next and reduces uncertainty [web:117].
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Discovery</h3>
+          <p>We assess your workflow, patient needs, and operational goals.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Configuration</h3>
+          <p>We adapt the platform and services to your healthcare environment.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Launch</h3>
+          <p>Your team starts using digital tools with guided onboarding.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Optimization</h3>
+          <p>We track feedback and improve performance over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-subtitle">
+        Testimonials help build trust and reinforce the value of the service [web:117].
+      </p>
+
+      <div class="grid-3">
+        <div class="card testimonial">
+          <p>"Bask Health helped us simplify patient follow-up and improve digital communication."</p>
+          <strong>— Operations Manager</strong>
+        </div>
+        <div class="card testimonial">
+          <p>"The platform is easy to use, responsive, and supports our care teams effectively."</p>
+          <strong>— Clinical Coordinator</strong>
+        </div>
+        <div class="card testimonial">
+          <p>"Implementation was smooth, and the user experience was clear for both staff and patients."</p>
+          <strong>— Health Program Lead</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">
+        FAQs reduce friction and answer common concerns before the user leaves the page [web:117].
+      </p>
+
+      <div class="faq">
+        <details>
+          <summary>Who is Bask Health for?</summary>
+          <p>Bask Health is designed for clinics, healthcare providers, and organizations looking to improve digital care delivery.</p>
+        </details>
+        <details>
+          <summary>Does the platform support telemedicine?</summary>
+          <p>Yes. It supports secure digital interactions and can be adapted to telemedicine-related workflows.</p>
+        </details>
+        <details>
+          <summary>Can the solution improve patient engagement?</summary>
+          <p>Yes. It helps teams communicate more clearly, organize follow-up, and support patients through digital touchpoints.</p>
+        </details>
+        <details>
+          <summary>Is the page mobile-friendly?</summary>
+          <p>Yes. This landing page is responsive and designed to work across desktop, tablet, and mobile devices [web:123].</p>
+        </details>
       </div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: info@baskhealth.com</p>
-    <p>Phone: +1 234 567 890</p>
+    <div class="container">
+      <div class="cta">
+        <h2>Ready to modernize your healthcare experience?</h2>
+        <p>
+          Give your team better tools and your patients a clearer digital experience with a platform designed for modern care.
+        </p>
+        <a href="mailto:info@baskhealth.com" class="btn btn-primary">Contact Us</a>
+      </div>
+    </div>
   </section>
 
   <footer>
